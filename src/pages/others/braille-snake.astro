@@ -1,12 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import "../../styles/star-gradient.css";
+import presentation from "../../assets/others/braille-snake/braille-snake.png";
+import demo from "../../assets/others/braille-snake/demo.gif";
+import tmux from "../../assets/others/braille-snake/tmux.gif";
+import help from "../../assets/others/braille-snake/help.png";
 ---
 
 <Layout title="braille-snake">
-  <div id="stars"></div>
-  <div id="stars2"></div>
-  <div id="stars3"></div>
+  <canvas id="starfield"></canvas>
+
 
   <main class="page">
 
@@ -63,7 +66,7 @@ import "../../styles/star-gradient.css";
 
       <div class="media-frame">
         <img
-          src="/src/assets/others/braille-snake/braille-snake.png"
+          src={presentation.src}
           alt="braille-snake running in a terminal"
           width="900"
           height="500"
@@ -81,7 +84,7 @@ import "../../styles/star-gradient.css";
 
       <div class="media-frame">
         <img
-          src="/src/assets/others/braille-snake/demo.gif"
+          src={demo.src}
           alt="braille-snake gameplay demo"
           width="900"
           height="500"
@@ -99,7 +102,7 @@ import "../../styles/star-gradient.css";
 
       <div class="media-frame">
         <img
-          src="/src/assets/others/braille-snake/tmux.gif"
+          src={tmux.src}
           alt="braille-snake gameplay demo inside the tmux status bar"
           width="900"
           height="500"
@@ -117,7 +120,7 @@ import "../../styles/star-gradient.css";
 
       <div class="media-frame">
         <img
-          src="/src/assets/others/braille-snake/help.png"
+          src={help.src}
           alt="braille-snake running in a terminal with help function"
           width="900"
           height="500"
