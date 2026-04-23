@@ -217,7 +217,7 @@ if (lang === "fr") {
     return {
       x:  cx + Math.cos(angle) * dist,
       y:  cy + Math.sin(angle) * dist,
-      z:  randomZ ? Math.random() * W : W,
+      z:  randomZ ? Math.random() * (W * 0.85) + W * 0.15 : W,
       pz: 0,
     };
   }
@@ -258,16 +258,20 @@ if (lang === "fr") {
       const size    = Math.max(0.1, (1 - s.z / W) * MAX_RADIUS);
       const opacity = 1 - s.z / W;
 
+      // Fade in based on distance from center in screen space
+      const distFromCenter = Math.hypot(sx - cx, sy - cy);
+      const fadeIn = Math.min(1, distFromCenter / (Math.min(W, H) * 0.08));
+
       ctx.beginPath();
       ctx.moveTo(spx, spy);
       ctx.lineTo(sx, sy);
-      ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.8})`;
+      ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.8 * fadeIn})`;
       ctx.lineWidth = size;
       ctx.stroke();
 
       ctx.beginPath();
       ctx.arc(sx, sy, size * 0.6, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+      ctx.fillStyle = `rgba(255, 255, 255, ${opacity * fadeIn})`;
       ctx.fill();
     }
 
