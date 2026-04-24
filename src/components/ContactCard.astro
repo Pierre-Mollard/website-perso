@@ -1,8 +1,8 @@
 ---
-import logoImage from "../assets/Website_Logo_Combined.png";
 import logoImageDark from "../assets/AppStoreLogo.png";
 import "../styles/glitch-image.css";
 import "../styles/glitch-text.css";
+
 export interface Props {
     title: string;
     description: string;
@@ -11,85 +11,76 @@ export interface Props {
 const { title, description, footer } = Astro.props;
 ---
 
-<div class="relative z-10 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 min-h-full">
-    <div class="flex-grow flex items-center justify-center h-full">
-        <div
-            class="flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-6 md:gap-12 px-4"
-        >
-            <!-- Left Side Image -->
-            <div class="md:w-1/3 w-3/5 flex justify-center">
-                <div class="glitch-wrapper">
-                    <img
-                        class="md:w-1/3 w-3/5 h-auto object-cover rounded-xl glitch-img"
-                        src={logoImageDark.src}
-                        alt="Contact Illustration"
-                    />
-                    <img
-                        class="md:w-1/3 w-3/5 h-auto object-cover rounded-xl glitch-img glitch-img-before"
-                        src={logoImageDark.src}
-                        alt="Contact Illustration"
-                    />
-                    <img
-                        class="md:w-1/3 w-3/5 h-auto object-cover rounded-xl glitch-img glitch-img-after"
-                        src={logoImageDark.src}
-                        alt="Contact Illustration"
-                    />
-                </div>
+<div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 py-16 flex items-center justify-center">
+    <div class="flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-8 md:gap-12 w-full">
+
+        <!-- Left Side Image -->
+        <div class="w-56 sm:w-64 md:w-72 shrink-0 flex justify-center">
+            <div class="glitch-wrapper w-full">
+                <img
+                    class="w-full h-auto object-cover rounded-xl glitch-img"
+                    src={logoImageDark.src}
+                    alt="Contact Illustration"
+                />
+                <img
+                    class="w-full h-auto object-cover rounded-xl glitch-img glitch-img-before"
+                    src={logoImageDark.src}
+                    alt=""
+                />
+                <img
+                    class="w-full h-auto object-cover rounded-xl glitch-img glitch-img-after"
+                    src={logoImageDark.src}
+                    alt=""
+                />
             </div>
-
-            <!-- Right Side Content -->
-            <section class="w-full md:w-1/2 text-md-text-dark px-4">
-                <h1
-                    class="glitchtxtalways text-3xl font-bold mb-6 text-md-heading-dark"
-                    data-text={title}
-                >
-                    {title}
-                </h1>
-
-                <p class="mb-4">
-                    {description}
-                </p>
-
-                <ul class="space-y-2">
-                    <li>
-                        <strong>Email:</strong>
-                        <a
-                            href="mailto:pierre.mollard@proton.me"
-                            class="glitchtxt text-md-link-dark hover:underline"
-                            data-text="pierre.mollard@proton.me"
-                            >pierre.mollard@proton.me</a
-                        >
-                    </li>
-
-                    <li>
-                        <strong>GitHub:</strong>
-                        <a
-                            href="https://github.com/Pierre-Mollard"
-                            target="_blank"
-                            class="glitchtxt text-md-link-dark hover:underline"
-                            data-text="github.com/Pierre-Mollard"
-                        >
-                            github.com/Pierre-Mollard
-                        </a>
-                    </li>
-
-                    <li>
-                        <strong>Google Play Developer:</strong>
-                        <a
-                            href="https://play.google.com/store/apps/dev?id=5497322522671187431"
-                            target="_blank"
-                            class="text-md-link-dark hover:underline glitchtxt"
-                            data-text="Google Play"
-                        >
-                            Google Play
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="mt-12 text-sm dark:text-gray-400">
-                    {footer}
-                </div>
-            </section>
         </div>
+
+        <!-- Right Side Content -->
+        <section class="w-full min-w-0 md:w-1/2">
+            <h1
+                class="glitchtxtalways text-3xl font-bold mb-6 text-md-heading-dark"
+                data-text={title}
+            >
+                {title}
+            </h1>
+
+            <p class="mb-4">
+                {description}
+            </p>
+
+            <ul class="space-y-2">
+                <li>
+                    <strong>Email:</strong>
+                    <a
+                        href="mailto:pierre.mollard@proton.me"
+                        class="glitchtxt text-md-link-dark hover:underline break-all"
+                        data-text="pierre.mollard@proton.me"
+                    >pierre.mollard@proton.me</a>
+                </li>
+                <li>
+                    <strong>GitHub:</strong>
+                    <a
+                        href="https://github.com/Pierre-Mollard"
+                        target="_blank"
+                        class="glitchtxt text-md-link-dark hover:underline break-all"
+                        data-text="github.com/Pierre-Mollard"
+                    >github.com/Pierre-Mollard</a>
+                </li>
+                <li>
+                    <strong>Google Play Developer:</strong>
+                    <a
+                        href="https://play.google.com/store/apps/dev?id=5497322522671187431"
+                        target="_blank"
+                        class="glitchtxt text-md-link-dark hover:underline break-all"
+                        data-text="Google Play"
+                    >Google Play</a>
+                </li>
+            </ul>
+
+            <div class="mt-12 text-sm dark:text-gray-400">
+                {footer}
+            </div>
+        </section>
+
     </div>
 </div>
