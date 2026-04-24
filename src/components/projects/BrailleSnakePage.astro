@@ -18,9 +18,10 @@ type Strings = typeof en;
 export interface Props {
   strings: Strings;
   lang?: string;
+  accent?: string;
 }
 
-const { strings: s, lang } = Astro.props;
+const { strings: s, lang, accent = "#86efac" } = Astro.props;
 
 const GITHUB = "https://github.com/Pierre-Mollard/braille-snake";
 
@@ -30,7 +31,8 @@ type FeatureEntry = string | readonly string[];
 <Layout title="braille-snake" lang={lang}>
   <canvas id="starfield"></canvas>
 
-  <main class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 pt-20 pb-16 font-mono text-slate-200">
+  <main class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 pt-20 pb-16 font-mono text-slate-200"
+    style={`--accent: ${accent};`}>
 
     <!-- ─── HERO ─────────────────────────────────────────────── -->
     <section class="text-center pb-12 mb-12 border-b border-white/[0.08]">
@@ -110,28 +112,14 @@ type FeatureEntry = string | readonly string[];
     <!-- ─── BUILD & RUN ───────────────────────────────────────── -->
     <section class="mb-14">
       <SectionTitle title={s.sections.buildRun} />
-      <TerminalBlock title="bash">
-        <code
-          ><span class="text-slate-600">{s.buildComments.clone}</span>
-<span class="text-green-300">git clone</span> {GITHUB}
-<span class="text-green-300">cd</span> braille-snake
-
-<span class="text-slate-600">{s.buildComments.build}</span>
-<span class="text-green-300">cmake --build build</span>
-
-<span class="text-slate-600">{s.buildComments.install}</span>
-<span class="text-green-300">cmake --install build --prefix ~/.local</span>
-
-<span class="text-slate-600">{s.buildComments.run}</span>
-<span class="text-green-300">./braille-snake</span></code>
-      </TerminalBlock>
+      <TerminalBlock title="bash" lines={s.buildLines} github={GITHUB} />
     </section>
 
     <!-- ─── TMUX TIP ───────────────────────────────────────────── -->
     <section class="mb-14">
       <SectionTitle title={s.sections.tmuxBar} />
       <TerminalBlock title="tmux">
-        <code><span class="text-slate-600">{s.tmuxComment}</span></code>
+        <span class="text-slate-600">{s.tmuxComment}</span>
       </TerminalBlock>
     </section>
 

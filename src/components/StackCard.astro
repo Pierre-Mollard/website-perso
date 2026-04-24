@@ -4,11 +4,28 @@ export interface Props {
   name: string;
   desc: string;
 }
-
 const { icon, name, desc } = Astro.props;
 ---
-<div class="flex flex-col gap-1 p-4 rounded-lg border border-white/[0.08] bg-white/[0.03] hover:border-green-300/30 hover:bg-green-300/[0.05] transition-colors">
+<div class="stack-card">
   <span class="text-xl">{icon}</span>
   <span class="text-sm font-semibold text-slate-100">{name}</span>
   <span class="text-xs text-slate-500 font-sans">{desc}</span>
 </div>
+
+<style>
+  .stack-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+
+  .stack-card:hover {
+    border-color: var(--accent-border-hover);
+    background: var(--accent-bg-hover);
+  }
+</style>

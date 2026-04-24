@@ -38,6 +38,21 @@ export default {
     run: "# Run",
   },
 
+  buildLines: [
+    { comment: "# Clone the repo" },
+    { cmd: "git clone", arg: "{GITHUB}" },
+    { cmd: "cd", arg: "braille-snake" },
+    null, // blank line
+    { comment: "# Build program" },
+    { cmd: "cmake --build build" },
+    null,
+    { comment: "# Install program" },
+    { cmd: "cmake --install build --prefix ~/.local" },
+    null,
+    { comment: "# Run" },
+    { cmd: "./braille-snake" },
+  ],
+
   tmuxComment: "# Copy the config file to your own tmux configuration (see README.md)",
 
   stack: [

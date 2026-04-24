@@ -31,12 +31,20 @@ export default {
     "Taille du jeu, vitesse et autres paramètres configurables",
   ],
 
-  buildComments: {
-    clone: "# Clone du dépôt",
-    build: "# Compilation",
-    install: "# Installation",
-    run: "# Exécution",
-  },
+  buildLines: [
+    { comment: "# Clone du dépôt" },
+    { cmd: "git clone", arg: "{GITHUB}" },
+    { cmd: "cd", arg: "braille-snake" },
+    null, // blank line
+    { comment: "# Compilation" },
+    { cmd: "cmake --build build" },
+    null,
+    { comment: "# Installation" },
+    { cmd: "cmake --install build --prefix ~/.local" },
+    null,
+    { comment: "# Exécution" },
+    { cmd: "./braille-snake" },
+  ],
 
   tmuxComment: "# Copier le fichier config dans votre configuration tmux (voir README.md)",
 

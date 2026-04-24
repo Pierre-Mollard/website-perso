@@ -1,9 +1,31 @@
 ---
+type Line =
+  | { comment: string }
+  | { cmd: string; arg?: string }
+  | null;
+
 export interface Props {
-  title?: string;  // "bash", "tmux", etc.
+  title?: string;
+  lines?: Line[];
+  github?: string;
 }
-const { title = "bash" } = Astro.props;
+
+const { title = "bash", lines, github } = Astro.props;
+
+function buildHtml(lines: Line[], github?: string): string {
+  return lines.map((line) => {
+    if (line === null) return "";
+    if ("comment" in line) {
+      return `<span class="text-slate-600">${line.comment}</span>`;
+    }
+    const arg = line.arg === "{GITHUB}" ? (github ?? "") : (line.arg ?? "");
+    return `<span style="color:var(--accent)">${line.cmd}</span>${arg ? ` ${arg}` : ""}`;
+  }).join("\n");
+}
+
+const codeHtml = lines ? buildHtml(lines, github) : null;
 ---
+
 <div class="rounded-xl overflow-hidden border border-white/10 bg-[#090d13]">
   <div class="flex items-center gap-1.5 px-4 py-2.5 bg-[#161b22] border-b border-white/[0.07]">
     <span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span>
@@ -11,6 +33,9 @@ const { title = "bash" } = Astro.props;
     <span class="w-3 h-3 rounded-full bg-[#28c840]"></span>
     <span class="mx-auto text-xs text-slate-600">{title}</span>
   </div>
-  <pre class="overflow-x-auto p-4 sm:p-5 text-xs sm:text-sm leading-relaxed m-0"
-       style="-webkit-overflow-scrolling: touch"><slot /></pre>
+  <pre class="overflow-x-auto p-4 sm:p-5 text-xs sm:text-sm leading-relaxed m-0 webkit-scroll">{
+    codeHtml
+      ? <code set:html={codeHtml} />
+      : <code><slot /></code>
+  }</pre>
 </div>

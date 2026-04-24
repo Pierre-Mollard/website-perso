@@ -1,13 +1,25 @@
+/* ── Accent palette (set --accent on the root element) ── */
+/* Default fallback if no accent is set */
+:root {
+  --accent: #86efac;
+  --accent-hover: #bbf7d0;
+  --accent-subtle: rgba(134, 239, 172, 0.07);
+  --accent-border: rgba(134, 239, 172, 0.35);
+  --accent-bg: rgba(134, 239, 172, 0.1);
+  --accent-bg-hover: rgba(134, 239, 172, 0.05);
+  --accent-border-hover: rgba(134, 239, 172, 0.3);
+}
+
 /* ── Tags ───────────────────────────────────── */
 .tag {
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.2rem 0.65rem;
-  border: 1px solid rgba(134, 239, 172, 0.35);
+  border: 1px solid var(--accent-border);
   border-radius: 9999px;
-  color: #86efac;
-  background: rgba(134, 239, 172, 0.07);
+  color: var(--accent);
+  background: var(--accent-subtle);
 }
 
 /* ── Section title ──────────────────────────── */
@@ -27,8 +39,8 @@
 .inline-code {
   font-family: 'JetBrains Mono', 'Fira Mono', monospace;
   font-size: 0.85em;
-  color: #86efac;
-  background: rgba(134, 239, 172, 0.1);
+  color: var(--accent);
+  background: var(--accent-bg);
   padding: 0.1em 0.35em;
   border-radius: 3px;
 }
@@ -44,12 +56,12 @@
   font-weight: 600;
   text-decoration: none;
   transition: background 160ms ease;
-  background: #86efac;
+  background: var(--accent);
   color: #0f172a;
 }
 
 .btn-primary:hover {
-  background: #bbf7d0;
+  background: var(--accent-hover);
 }
 
 .btn-ghost {
