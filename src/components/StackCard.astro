@@ -1,0 +1,14 @@
+---
+export interface Props {
+  icon: string;
+  name: string;
+  desc: string;
+}
+
+const { icon, name, desc } = Astro.props;
+---
+<div class="flex flex-col gap-1 p-4 rounded-lg border border-white/[0.08] bg-white/[0.03] hover:border-green-300/30 hover:bg-green-300/[0.05] transition-colors">
+  <span class="text-xl">{icon}</span>
+  <span class="text-sm font-semibold text-slate-100">{name}</span>
+  <span class="text-xs text-slate-500 font-sans">{desc}</span>
+</div>

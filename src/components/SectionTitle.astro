@@ -1,0 +1,9 @@
+---
+export interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+<h2 class="section-title">
+  <span class="text-green-300">$</span> {title}
+</h2>

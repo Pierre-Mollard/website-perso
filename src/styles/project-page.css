@@ -1,3 +1,4 @@
+/* ── Tags ───────────────────────────────────── */
 .tag {
   font-size: 0.7rem;
   letter-spacing: 0.08em;
@@ -9,6 +10,7 @@
   background: rgba(134, 239, 172, 0.07);
 }
 
+/* ── Section title ──────────────────────────── */
 .section-title {
   font-size: 0.8rem;
   font-weight: 600;
@@ -21,6 +23,7 @@
   gap: 0.5rem;
 }
 
+/* ── Inline code ────────────────────────────── */
 .inline-code {
   font-family: 'JetBrains Mono', 'Fira Mono', monospace;
   font-size: 0.85em;
@@ -28,4 +31,47 @@
   background: rgba(134, 239, 172, 0.1);
   padding: 0.1em 0.35em;
   border-radius: 3px;
+}
+
+/* ── Buttons ────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 160ms ease;
+  background: #86efac;
+  color: #0f172a;
+}
+
+.btn-primary:hover {
+  background: #bbf7d0;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #cbd5e1;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #f1f5f9;
+}
+
+/* ── Terminal pre scroll on iOS ─────────────── */
+.webkit-scroll {
+  -webkit-overflow-scrolling: touch;
 }

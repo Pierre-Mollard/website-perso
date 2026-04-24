@@ -1,0 +1,13 @@
+---
+export interface Props {
+  caption?: string;
+}
+const { caption } = Astro.props;
+---
+<div class="rounded-xl overflow-hidden border border-white/10 bg-[#0d1117]">
+  <slot />
+  {caption && (
+    <p class="px-4 py-2 text-xs text-slate-600 border-t border-white/[0.06] font-sans"
+       set:html={caption} />
+  )}
+</div>
