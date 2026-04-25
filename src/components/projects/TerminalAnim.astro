@@ -1,0 +1,104 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/star-gradient.css";
+import "../../styles/project-page.css";
+import TerminalBlock from "../TerminalBlock.astro";
+import MediaFrame from "../MediaFrame.astro";
+import SectionTitle from "../SectionTitle.astro";
+import StackCard from "../StackCard.astro";
+
+import shapes from "../../assets/others/terminal-anim/shapes.png";
+import lines from "../../assets/others/terminal-anim/lines.png";
+import game from "../../assets/others/terminal-anim/game.png";
+
+import type en from "../../i18n/terminal-anim.en";
+type Strings = typeof en;
+
+export interface Props {
+  strings: Strings;
+  lang?: string;
+  accent?: string;
+}
+
+const { strings: s, lang, accent = "#86efac" } = Astro.props;
+
+const GITHUB = "https://github.com/Pierre-Mollard/terminal-anim";
+
+type FeatureEntry = string | readonly string[];
+---
+
+<Layout title="terminal-anim" lang={lang}>
+  <canvas id="starfield"></canvas>
+
+  <main class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 pt-20 pb-16 font-mono text-slate-200"
+    style={`--accent: ${accent};`}>
+
+    <!-- ─── HERO ─────────────────────────────────────────────── -->
+    <section class="text-center pb-12 mb-12 border-b border-white/[0.08]">
+      <div class="flex flex-wrap gap-2 justify-center mb-6">
+        {["C", "cmake", "terminal", "tmux", "ASCII"].map(t => (
+          <span class="tag">{t}</span>
+        ))}
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight mb-4 text-slate-50">
+        braille<span class="text-green-300">-snake</span>
+      </h1>
+
+      <p class="text-base sm:text-lg leading-relaxed text-slate-400 max-w-prose mx-auto mb-8 font-sans">
+        {s.subtitle}
+      </p>
+
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href={GITHUB} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          {s.viewOnGithub}
+        </a>
+        <a href="#demo" class="btn-ghost">{s.seeDemo}</a>
+      </div>
+    </section>
+
+    <!-- ─── MEDIA SECTIONS ───────────────────────────────────── -->
+    <section class="mb-14" id="demo">
+      <SectionTitle title={s.sections.screenshot} />
+      <MediaFrame caption={s.captions.screenshot}>
+        <img src={shapes.src} alt="braille-snake running in a terminal" loading="lazy" class="w-full h-auto block" />
+      </MediaFrame>
+    </section>
+
+    <section class="mb-14">
+      <SectionTitle title={s.sections.demo} />
+      <MediaFrame caption={`Recorded with <code class="text-green-300">asciinema</code> + converted to GIF`}>
+        <img src={lines.src} alt="braille-snake gameplay demo" loading="lazy" class="w-full h-auto block" />
+      </MediaFrame>
+    </section>
+
+    <section class="mb-14">
+      <SectionTitle title={s.sections.demoTmux} />
+      <MediaFrame caption={`Recorded with <code class="text-green-300">ShareX</code> + converted to GIF`}>
+        <img src={game.src} alt="braille-snake demo inside tmux status bar" loading="lazy" class="w-full h-auto block" />
+      </MediaFrame>
+    </section>
+
+    <!-- ─── TECH STACK ────────────────────────────────────────── -->
+    <section class="mb-14">
+      <SectionTitle title={s.sections.stack} />
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {s.stack.map(({ icon, name, desc }) => (
+          <StackCard {icon} {name} {desc} />
+        ))}
+      </div>
+    </section>
+
+    <!-- ─── CTA ────────────────────────────────────────────────── -->
+    <section class="flex flex-col items-center gap-4 pt-10 mt-6 border-t border-white/[0.08] text-center">
+      <p class="text-slate-400 font-sans text-base">{s.ctaText}</p>
+      <a href={GITHUB} target="_blank" rel="noopener noreferrer" class="btn-primary">
+        {s.openOnGithub}
+      </a>
+    </section>
+
+  </main>
+</Layout>
