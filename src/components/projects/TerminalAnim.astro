@@ -20,7 +20,7 @@ export interface Props {
   accent?: string;
 }
 
-const { strings: s, lang, accent = "#86efac" } = Astro.props;
+const { strings: s, lang, accent = "#A020F0" } = Astro.props;
 
 const GITHUB = "https://github.com/Pierre-Mollard/terminal-anim";
 
@@ -42,7 +42,7 @@ type FeatureEntry = string | readonly string[];
       </div>
 
       <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight mb-4 text-slate-50">
-        braille<span class="text-green-300">-snake</span>
+        terminal<span class="text-purple-300">-anim</span>
       </h1>
 
       <p class="text-base sm:text-lg leading-relaxed text-slate-400 max-w-prose mx-auto mb-8 font-sans">
@@ -64,21 +64,21 @@ type FeatureEntry = string | readonly string[];
     <section class="mb-14" id="demo">
       <SectionTitle title={s.sections.screenshot} />
       <MediaFrame caption={s.captions.screenshot}>
-        <img src={shapes.src} alt="braille-snake running in a terminal" loading="lazy" class="w-full h-auto block" />
+        <img src={shapes.src} alt="terminal-anim" loading="lazy" class="w-full h-auto block" />
       </MediaFrame>
     </section>
 
     <section class="mb-14">
       <SectionTitle title={s.sections.demo} />
-      <MediaFrame caption={`Recorded with <code class="text-green-300">asciinema</code> + converted to GIF`}>
-        <img src={lines.src} alt="braille-snake gameplay demo" loading="lazy" class="w-full h-auto block" />
+      <MediaFrame caption={`Recorded with <code class="text-purple-300">asciinema</code> + converted to GIF`}>
+        <img src={lines.src} alt="terminal-anim" loading="lazy" class="w-full h-auto block" />
       </MediaFrame>
     </section>
 
     <section class="mb-14">
       <SectionTitle title={s.sections.demoTmux} />
-      <MediaFrame caption={`Recorded with <code class="text-green-300">ShareX</code> + converted to GIF`}>
-        <img src={game.src} alt="braille-snake demo inside tmux status bar" loading="lazy" class="w-full h-auto block" />
+      <MediaFrame caption={`Recorded with <code class="text-purple-300">ShareX</code> + converted to GIF`}>
+        <img src={game.src} alt="terminal-anim" loading="lazy" class="w-full h-auto block" />
       </MediaFrame>
     </section>
 

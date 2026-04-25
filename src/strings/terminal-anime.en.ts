@@ -1,5 +1,5 @@
 export default {
-  subtitle: "A Snake game rendered entirely in Unicode Braille characters, playable inside any terminal — optimised for tmux status bar.",
+  subtitle: "TBD, not finished, library to draw in the terminal (no deps)",
   viewOnGithub: "View on GitHub",
   seeDemo: "See demo ↓",
   openOnGithub: "Open on GitHub →",
@@ -17,10 +17,10 @@ export default {
   },
 
   captions: {
-    screenshot: "braille-snake — full screen in a tmux pane",
+    screenshot: "terminal-anim — full screen in a tmux pane",
     demo: "Recorded with asciinema + converted to GIF",
     demoTmux: "Recorded with ShareX + converted to GIF",
-    configurable: "braille-snake — cli usage function",
+    configurable: "terminal-anim — cli usage function",
   },
 
   features: [
@@ -41,7 +41,7 @@ export default {
   buildLines: [
     { comment: "# Clone the repo" },
     { cmd: "git clone", arg: "{GITHUB}" },
-    { cmd: "cd", arg: "braille-snake" },
+    { cmd: "cd", arg: "terminal-anim" },
     null, // blank line
     { comment: "# Build program" },
     { cmd: "cmake --build build" },
@@ -50,7 +50,7 @@ export default {
     { cmd: "cmake --install build --prefix ~/.local" },
     null,
     { comment: "# Run" },
-    { cmd: "./braille-snake" },
+    { cmd: "./terminal-anim" },
   ],
 
   tmuxComment: "# Copy the config file to your own tmux configuration (see README.md)",
@@ -58,7 +58,6 @@ export default {
   stack: [
     { icon: "⚙", name: "C99", desc: "Language" },
     { icon: "🖥", name: "Terminal", desc: "Custom TUI rendering" },
-    { icon: "⬛", name: "TMUX", desc: "Multiplexer target" },
     { icon: "⚙", name: "cmake", desc: "Build chain" },
   ],
 } as const;
