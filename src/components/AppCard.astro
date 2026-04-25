@@ -10,37 +10,30 @@ export interface Props {
 const { title, description, logo, link, colorLight, colorDark } = Astro.props;
 ---
 
-<a href={link} class="sm:m-4 m-2 block group sm:w-64 w-48 cursor-pointer mt-8">
-    <div
-        class="flex flex-col items-start gap-4 w-full h-full"
-        style={`--shadow-glow-color-light: ${colorLight}; --shadow-glow-color-dark: ${colorDark}`}
-    >
-        <!-- Image -->
-        <img
-            src={logo}
-            alt="Image Title"
-            class="w-full sm:h-64 h-48 object-cover rounded-2xl shadow-lg transition-all duration-300 ease-in-out group-hover:shadow-xl group-hover:shadow-glow group-hover:scale-105 z-1 group-hover:z-1"
-        />
+<a href={link} class="block group cursor-pointer w-full max-w-sm sm:w-56 md:w-64">
+  <div class="flex sm:flex-col flex-row items-center gap-4 w-full p-3 rounded-2xl bg-black/20 backdrop-blur-sm sm:bg-transparent sm:p-0"
+       style={`--shadow-glow-color-light: ${colorLight}; --shadow-glow-color-dark: ${colorDark}`}>
 
-        <!-- Text panel -->
-        <div
-            class="relative w-full p-4 rounded-xl shadow-xl bg-black/30 backdrop-blur-md text-white"
-        >
-            <!-- Title -->
-            <h1 class="text-xl font-semibold drop-shadow text-center">
-                {title}
-            </h1>
+    <!-- Image -->
+    <img
+      src={logo}
+      alt={title}
+      class="sm:w-full w-20 h-20 sm:h-56 object-cover rounded-2xl shadow-lg
+             transition-all duration-300 ease-in-out shrink-0
+             group-hover:shadow-xl group-hover:shadow-glow group-hover:scale-105"
+    />
 
-            <!-- Description -->
-            <p
-                class="mt-2 text-sm text-center transition-all duration-300 ease-in-out
-          sm:opacity-0 sm:max-h-0 sm:overflow-hidden
-          sm:group-hover:opacity-100 sm:group-hover:max-h-40"
-            >
-                {description}
-            </p>
-        </div>
+    <!-- Text -->
+    <div class="flex-1 sm:w-full p-3 sm:p-4 rounded-xl bg-black/30 backdrop-blur-md text-white sm:bg-black/30">
+      <h2 class="text-base sm:text-xl font-semibold drop-shadow sm:text-center">{title}</h2>
+      <p class="mt-1 text-xs sm:text-sm text-white/80
+                sm:opacity-0 sm:max-h-0 sm:overflow-hidden
+                sm:group-hover:opacity-100 sm:group-hover:max-h-40
+                transition-all duration-300 ease-in-out">
+        {description}
+      </p>
     </div>
+  </div>
 </a>
 
 <style>
