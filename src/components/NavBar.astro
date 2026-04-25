@@ -52,78 +52,78 @@ if (currentPath.startsWith("/check-it/") || currentPath.startsWith("/fr/check-it
 </style>
 
 
-  <!-- Overlay -->
-  <div
-    id="mobile-overlay"
-    class="fixed inset-0 bg-black/50 transition-opacity duration-500 opacity-0 backdrop-blur-xs backdrop-saturate-150 z-5 hidden sm:hidden"
-    onclick="toggleMenu()"
+<!-- Overlay -->
+<div
+  id="mobile-overlay"
+  class="fixed inset-0 bg-black/50 transition-opacity duration-500 opacity-0 backdrop-blur-xs backdrop-saturate-150 z-5 hidden sm:hidden"
+  onclick="toggleMenu()"
 />
 <nav class="bg-white/80 dark:bg-[#0d1117]/95 backdrop-blur-md border-b border-black/[0.06] dark:border-white/[0.06] shadow-sm z-15">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
-    <div class="relative flex h-16 items-center justify-between ">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between gap-4">
 
-      <!-- Mobile menu button -->
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden p-2">
-        <button class="cursor-pointer group inline-flex w-10 h-10 text-mobile-svg dark:text-mobile-svg-dark hover:bg-mobile-menu-hover dark:hover:bg-mobile-menu-hover-dark text-center items-center justify-center rounded hover:shadow-[0_1px_0_theme(colors.slate.950/.04),0_4px_8px_theme(colors.slate.950/.12),inset_0_-2px_0_theme(colors.slate.950/.04)] z-20 transition" 
-              id="mobile-menu-bt"
-              aria-pressed="false" 
-              onclick="toggleMenu()">
+    <!-- Left: hamburger (mobile only) + logo -->
+    <div class="flex items-center shrink-0">
+      <!-- Hamburger — mobile only, stays left -->
+      <div class="flex items-center sm:hidden">
+        <button
+          class="cursor-pointer group inline-flex w-10 h-10 text-mobile-svg dark:text-mobile-svg-dark hover:bg-mobile-menu-hover dark:hover:bg-mobile-menu-hover-dark text-center items-center justify-center rounded hover:shadow-[0_1px_0_theme(colors.slate.950/.04),0_4px_8px_theme(colors.slate.950/.12),inset_0_-2px_0_theme(colors.slate.950/.04)] z-20 transition"
+          id="mobile-menu-bt"
+          aria-pressed="false"
+          onclick="toggleMenu()">
           <span class="sr-only">Open main menu</span>
           <svg class="w-6 h-6 fill-current pointer-events-none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-              <rect class="origin-center -translate-y-[5px] translate-x-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-[[aria-pressed=true]]:translate-x-0 group-[[aria-pressed=true]]:translate-y-0 group-[[aria-pressed=true]]:rotate-[315deg]" y="7" width="9" height="2" rx="1"></rect>
-              <rect class="origin-center transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)] group-[[aria-pressed=true]]:rotate-45" y="7" width="16" height="2" rx="1"></rect>
-              <rect class="origin-center translate-y-[5px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-[[aria-pressed=true]]:translate-y-0 group-[[aria-pressed=true]]:rotate-[135deg]" y="7" width="9" height="2" rx="1"></rect>
+            <rect class="origin-center -translate-y-[5px] translate-x-[7px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-[[aria-pressed=true]]:translate-x-0 group-[[aria-pressed=true]]:translate-y-0 group-[[aria-pressed=true]]:rotate-[315deg]" y="7" width="9" height="2" rx="1"></rect>
+            <rect class="origin-center transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.8)] group-[[aria-pressed=true]]:rotate-45" y="7" width="16" height="2" rx="1"></rect>
+            <rect class="origin-center translate-y-[5px] transition-all duration-300 ease-[cubic-bezier(.5,.85,.25,1.1)] group-[[aria-pressed=true]]:translate-y-0 group-[[aria-pressed=true]]:rotate-[135deg]" y="7" width="9" height="2" rx="1"></rect>
           </svg>
         </button>
       </div>
-      
-      <!-- Desktop Menu -->
-      <div class="relative flex items-center h-16 justify-center sm:w-sm w-full">
-        <a href="/">
+
+      <!-- Logo: absolute center on mobile, normal flow on desktop -->
+      <a href="/"
+        class="absolute left-1/2 -translate-x-1/2 sm:static sm:left-auto sm:translate-x-0">
         <picture>
-          <!-- Dark mode image -->
           <source srcset={logoImageDark.src} media="(prefers-color-scheme: dark)" />
-          <!-- Light mode fallback -->
           <img
-            class="size-8 max-w-full h-auto mx-auto block sm:ml-0 ml-10"
+            class="size-8 h-auto block"
             src={logoImage.src}
             alt="Pierre Mollard Image Logo"
           />
         </picture>
       </a>
-      
-        <div class="hidden sm:ml-6  sm:flex sm:items-center ">
-            <div class="hidden sm:flex space-x-4">
-                {links.map((link: Link) => (
-                  <div class="relative group">
-                    <a
-                      href={activeTab === link.key ? undefined : link.href}
-                      class={clsx("relative px-3 py-2 text-base font-medium rounded-md whitespace-nowrap", activeTab === link.key
-                          ? "bg-navbar-menu-bg-active dark:bg-navbar-menu-bg-active-dark text-navbar-menu-text-active dark:text-navbar-menu-text-active-dark no-pop-hover pointer-events-auto cursor-default"
-                          : "text-navbar-menu-text dark:text-navbar-menu-text-dark hover:bg-navbar-menu-bg-hover dark:hover:bg-navbar-menu-bg-hover-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark transition-all duration-200 ease-in-out pop-hover")}
-                    >
-                      {link.name}
-                      <span class="absolute inset-0 -m-2"></span> 
-                    </a>
-                  <!-- Dropdown -->
-                  {link.dropdown && (
-                    <div class="absolute left-0 w-48 mt-2 bg-navbar-dropdown-bg dark:bg-navbar-dropdown-bg-dark text-on-surface dark:text-on-surface-dark rounded-md shadow-lg opacity-0 scale-95 transition-all duration-200 ease-in-out 
-                   pointer-events-none group-hover:opacity-100 group-hover:scale-100 
-                   group-hover:pointer-events-auto z-20">
-                      {link.dropdown.map(sub => (
-                        <a href={sub.href} class="block px-4 py-2 text-base hover:bg-navbar-dropdown-bg-500 dark:hover:bg-navbar-dropdown-bg-500-dark rounded-md transition-all duration-200 ease-in-out">{sub.name}</a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+    </div>
 
+      <!-- Center: nav links (desktop only) -->
+      <div class="hidden sm:flex flex-1 items-center justify-center">
+        <div class="flex items-center space-x-1">
+          {links.map((link: Link) => (
+            <div class="relative group">
+              <a
+                href={activeTab === link.key ? undefined : link.href}
+                class={clsx("relative px-3 py-2 text-base font-medium rounded-md whitespace-nowrap", activeTab === link.key
+                    ? "bg-navbar-menu-bg-active dark:bg-navbar-menu-bg-active-dark text-navbar-menu-text-active dark:text-navbar-menu-text-active-dark no-pop-hover pointer-events-auto cursor-default"
+                    : "text-navbar-menu-text dark:text-navbar-menu-text-dark hover:bg-navbar-menu-bg-hover dark:hover:bg-navbar-menu-bg-hover-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark transition-all duration-200 ease-in-out pop-hover")}
+              >
+                {link.name}
+                <span class="absolute inset-0 -m-2"></span>
+              </a>
+              {link.dropdown && (
+                <div class="absolute left-0 w-48 mt-2 bg-navbar-dropdown-bg dark:bg-navbar-dropdown-bg-dark text-on-surface dark:text-on-surface-dark rounded-md shadow-lg opacity-0 scale-95 transition-all duration-200 ease-in-out
+                   pointer-events-none group-hover:opacity-100 group-hover:scale-100
+                   group-hover:pointer-events-auto z-20">
+                  {link.dropdown.map(sub => (
+                    <a href={sub.href} class="block px-4 py-2 text-base hover:bg-navbar-dropdown-bg-500 dark:hover:bg-navbar-dropdown-bg-500-dark rounded-md transition-all duration-200 ease-in-out">{sub.name}</a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
-      <!-- Profile -->
-      <div class="relative mr-">
+      <!-- Right: profile/contact avatar -->
+      <div class="shrink-0">
         <a
           href={activeTab === "Contact" ? undefined : "/contact/"}
           class={clsx(
@@ -141,66 +141,64 @@ if (currentPath.startsWith("/check-it/") || currentPath.startsWith("/fr/check-it
   </div>
 
   <!-- Mobile Menu -->
-<div  
-  id="mobile-menu" 
-  class="sm:hidden overflow-hidden max-h-0 transition-all duration-500 ease-in-out px-2 pt-0 pb-0 space-y-1 z-20">
-    {links.map((link: Link) => (
-      link.dropdown
-        ? (
-          <div class="mobile-dropdown">
-            {/* Parent row — link + chevron button */}
-            <div class={clsx(
-              "flex items-center rounded-md transition-colors",
-              activeTab === link.key
-                ? "bg-navbar-menu-bg-active dark:bg-navbar-menu-bg-active-dark"
-                : "hover:bg-navbar-menu-bg-hover dark:hover:bg-navbar-menu-bg-hover-dark"
-            )}>
-              <a
-                href={activeTab === link.key ? undefined : link.href}
-                class={clsx(
-                  "flex-1 px-3 py-2 text-base font-medium transition-colors",
-                  activeTab === link.key
-                    ? "text-navbar-menu-text-active dark:text-navbar-menu-text-active-dark cursor-default"
-                    : "text-navbar-menu-text dark:text-navbar-menu-text-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark"
-                )}
-              >
-                {link.name}
-              </a>
-              <button
-                class="px-3 py-2 text-navbar-menu-text dark:text-navbar-menu-text-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark transition-colors cursor-pointer"
-                onclick="toggleDropdown(this)"
-                aria-label={`Expand ${link.name}`}
-              >
-                <svg class="dropdown-chevron w-4 h-4 transition-transform duration-200" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                  <path d="M4 6l4 4 4-4"/>
-                </svg>
-              </button>
-            </div>
-            {/* Sub-items — collapsed by default */}
-            <div class="mobile-sub max-h-0 overflow-hidden transition-all duration-300 ease-in-out ml-3 border-l border-black/10 dark:border-white/10 pl-3 space-y-1">
-              {link.dropdown.map(sub => (
+  <div
+    id="mobile-menu"
+    class="sm:hidden overflow-hidden max-h-0 transition-all duration-500 ease-in-out px-2 pt-0 pb-0 space-y-1 z-20">
+      {links.map((link: Link) => (
+        link.dropdown
+          ? (
+            <div class="mobile-dropdown">
+              <div class={clsx(
+                "flex items-center rounded-md transition-colors",
+                activeTab === link.key
+                  ? "bg-navbar-menu-bg-active dark:bg-navbar-menu-bg-active-dark"
+                  : "hover:bg-navbar-menu-bg-hover dark:hover:bg-navbar-menu-bg-hover-dark"
+              )}>
                 <a
-                  href={sub.href}
-                  class="block rounded-md px-3 py-2 text-sm font-medium text-navbar-menu-text dark:text-navbar-menu-text-dark hover:bg-navbar-menu-bg-hover dark:hover:bg-navbar-menu-bg-hover-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark transition-colors"
+                  href={activeTab === link.key ? undefined : link.href}
+                  class={clsx(
+                    "flex-1 px-3 py-2 text-base font-medium transition-colors",
+                    activeTab === link.key
+                      ? "text-navbar-menu-text-active dark:text-navbar-menu-text-active-dark cursor-default"
+                      : "text-navbar-menu-text dark:text-navbar-menu-text-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark"
+                  )}
                 >
-                  {sub.name}
+                  {link.name}
                 </a>
-              ))}
+                <button
+                  class="px-3 py-2 text-navbar-menu-text dark:text-navbar-menu-text-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark transition-colors cursor-pointer"
+                  onclick="toggleDropdown(this)"
+                  aria-label={`Expand ${link.name}`}
+                >
+                  <svg class="dropdown-chevron w-4 h-4 transition-transform duration-200" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 6l4 4 4-4"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="mobile-sub max-h-0 overflow-hidden transition-all duration-300 ease-in-out ml-3 border-l border-black/10 dark:border-white/10 pl-3 space-y-1">
+                {link.dropdown.map(sub => (
+                  <a
+                    href={sub.href}
+                    class="block rounded-md px-3 py-2 text-sm font-medium text-navbar-menu-text dark:text-navbar-menu-text-dark hover:bg-navbar-menu-bg-hover dark:hover:bg-navbar-menu-bg-hover-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark transition-colors"
+                  >
+                    {sub.name}
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        )
-        : (
-          <a
-            href={activeTab === link.key ? undefined : link.href}
-            class={clsx("block rounded-md px-3 py-2 text-base font-medium transition-colors", activeTab === link.key
-              ? "bg-navbar-menu-bg-active dark:bg-navbar-menu-bg-active-dark text-navbar-menu-text-active dark:text-navbar-menu-text-active-dark cursor-default"
-              : "text-navbar-menu-text dark:text-navbar-menu-text-dark hover:bg-navbar-menu-bg-hover dark:hover:bg-navbar-menu-bg-hover-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark")}
-          >
-            {link.name}
-          </a>
-        )
-    ))}
-</div>
+          )
+          : (
+            <a
+              href={activeTab === link.key ? undefined : link.href}
+              class={clsx("block rounded-md px-3 py-2 text-base font-medium transition-colors", activeTab === link.key
+                ? "bg-navbar-menu-bg-active dark:bg-navbar-menu-bg-active-dark text-navbar-menu-text-active dark:text-navbar-menu-text-active-dark cursor-default"
+                : "text-navbar-menu-text dark:text-navbar-menu-text-dark hover:bg-navbar-menu-bg-hover dark:hover:bg-navbar-menu-bg-hover-dark hover:text-navbar-menu-text-hover dark:hover:text-navbar-menu-text-hover-dark")}
+            >
+              {link.name}
+            </a>
+          )
+      ))}
+  </div>
 
 </nav>
 
